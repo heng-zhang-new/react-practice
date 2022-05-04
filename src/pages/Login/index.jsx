@@ -1,8 +1,16 @@
-import { Card, Form, Input, Button, Checkbox } from 'antd'
+import { Card, Form, Input, Button, Checkbox, message } from 'antd'
+import { useNavigate } from 'react-router-dom'
 import './index.scss'
+import useStore from '../../store'
 
 function Login() {
-  const onFinish = (values) => console.log(values)
+  const navigate = useNavigate()
+  const { loginStore } = useStore()
+  const onFinish = async (values) => {
+    await loginStore.getToken({ mobild: values.mobile, code: values.code })
+    navigate('/', { replace: true })
+    message.success('登录成功')
+  }
 
   return (
     <div className="login">
@@ -13,7 +21,7 @@ function Login() {
           alt=""
         />
         {/* 登录表单 */}
-        <Form onFinish={onFinish} onFI>
+        <Form onFinish={onFinish}>
           <Form.Item
             name="mobile"
             rules={[
