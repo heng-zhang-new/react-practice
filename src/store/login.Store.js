@@ -12,9 +12,8 @@ class LoginStore {
   }
 
   getToken = async ({ mobile, code }) => {
-    // const res = await http.post('http://geek.itheima.net/v1_0/authorizations', { mobile, code })
-    // this.token = res.data.token
-    this.token = 'abcd'
+    const res = await http.post('get-token', { mobile, code })
+    this.token = res.data.token
     setToken(this.token)
   }
 }

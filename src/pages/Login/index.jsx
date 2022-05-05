@@ -7,7 +7,7 @@ function Login() {
   const navigate = useNavigate()
   const { loginStore } = useStore()
   const onFinish = async (values) => {
-    await loginStore.getToken({ mobild: values.mobile, code: values.code })
+    await loginStore.getToken({ mobile: values.mobile, code: values.code })
     navigate('/', { replace: true })
     message.success('登录成功')
   }
